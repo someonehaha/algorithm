@@ -107,10 +107,10 @@ void printlist(List *l)
 	Position* p;
 	p = l->next;
 	while(p != NULL ){
-		printf(" %d\r\n", p->element);
+		printf("  %d", p->element);
 		p = p->next;
 	}
-	
+	printf("\r\n");
 }
 
 void printLots(List *l, List *p)
@@ -123,27 +123,93 @@ void printLots(List *l, List *p)
 	
 	while(p2 != NULL && p1 != NULL){
 		if(p2->element == counter++){
-			printf("%d \r\n",p1->element);
+			printf("  %d",p1->element);
 			p2 = p2->next;		
 		}
 		p1=p1->next;
 	}
-	
+	printf("\r\n");
 }
 
-/*升序表L1,L2, 求L1∪ L2*/
+/*排序表L1,L2, 求L1∪ L2*/
 
-List * union(List *l1,List *l2)
+List * unionSet(List *l1,List *l2)
 {
+	List * result=creatList();
+	if(result ==NULL){
+		printf("creatList fail\r\n");
+	}
+	//Position* result_p ;
+	//result->next = result_p;
+	Position* l1_p = l1->next;
+	Position* l2_p = l2->next;
+	while(l1_p != NULL && l2_p !=NULL){
+		
+		//result_p = malloc(sizeof(struct Node));
+		if(l1_p->element < l2_p->element){		
+			//result_p->element = l1_p->element;
+			//result_p = result_p->next;
+			append(result,l1_p->element);
+			l1_p = l1_p->next;		
+		}else if(l1_p->element == l2_p->element){
+			//result_p->element = l1_p->element;
+			//result_p =  result_p->next;
+			append(result,l1_p->element);
+			l1_p = l1_p->next;
+			l2_p = l2_p->next;		
+		}else if(l1_p->element > l2_p->element){
+			//result_p ->element = l2_p->element;
+			//result_p = result_p->next;
+			append(result,l2_p->element);
+			l2_p = l2_p->next;		
+		}
+			
+	}
 	
+	while(l1_p != NULL){
+		//result_p = malloc(sizeof(struct Node));
+		//result_p -> element = l1_p->element;
+		//result_p = result_p->next;
+		append(result,l1_p->element);
+		l1_p = l1_p->next;
+	}
+	while(l2_p != NULL){
+		//result_p = malloc(sizeof(struct Node));
+		//result_p -> element = l2_p->element;
+		//result_p = result_p->next;
+		append(result,l2_p->element);
+		l2_p = l2_p->next;
+	}
 	
+	return result;
 	
 }
 
-/*升序表L1,L2 求L1 ∩ L2*/
+/*排序表L1,L2 求L1 ∩ L2*/
 List *intersect(List *l1, List *l2)
 {
+	List * result=creatList();
+	if(result ==NULL){
+		printf("creatList fail\r\n");
+	}
 	
+	Position* l1_p = l1->next;
+	Position* l2_p = l2->next;
+	while(l1_p != NULL && l2_p !=NULL){
+		
+		if(l1_p->element < l2_p->element){		
+			l1_p = l1_p->next;		
+		}else if(l1_p->element == l2_p->element){		
+			append(result,l1_p->element);
+			l1_p = l1_p->next;
+			l2_p = l2_p->next;		
+		}else if(l1_p->element > l2_p->element){
+			l2_p = l2_p->next;		
+		}
+			
+	}
+	
+	return result;
 	
 }
 

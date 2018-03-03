@@ -3,14 +3,13 @@
 #include <time.h>
 #include "list.h"
 
-
-void main(int argc, char * argv[])
+int main(int argc, char * argv[])
 {
-	List *l,*p;
+	List *l1,*l2;
 	int i;
-	l = creatList();
-	p = creatList();
-	if(l == NULL || p == NULL){
+	l1 = creatList();
+	l2 = creatList();
+	if(l1 == NULL || l2 == NULL){
 		printf(" creat list error! \r\n");
 		exit(0);
 	}
@@ -19,22 +18,59 @@ void main(int argc, char * argv[])
 	{
 		srand((unsigned) time(NULL));
 		for(i=0;i<10;i++){
-			append(l, rand()%100);
+			append(l1, rand()%100);
 		}
-		printlist(l);	
-	}else if(strcmp(argv[1],"printlots")==0)
+		printlist(l1);	
+	}
+	else if(strcmp(argv[1],"printlots")==0)
 	{
 		for(i=0;i<10;i++){
-			append(l,i);
-			append(p, 2*i+1);
+			append(l1,i);
+			append(l2, 2*i+1);
 		}
-		printlist(l);
-		printlist(p);
-		printLots(l,p);
-		
+		printf("l1: \r\n");
+		printlist(l1);
+		printf("l2: \r\n");
+		printlist(l2);
+		printLots(l1,l2);	
+	}
+	else if(strcmp(argv[1],"unionset")==0)
+	{
+		for(i=0;i<10;i++){
+			append(l1,i);
+			append(l2,i+5);
+		}
+		printf("l1: \r\n");
+		printlist(l1);
+		printf("l2: \r\n");
+		printlist(l2);
+		List * l=unionSet(l1,l2);
+		if(l!=NULL){
+			printf("l1 ∪ l2:\r\n");
+			printlist(l);
+		}		
+	}
+	else if(strcmp(argv[1],"intersect")==0)
+	{
+		for(i=0;i<10;i++){
+			append(l1,i);
+			append(l2,i+5);
+		}
+		printf("l1: \r\n");
+		printlist(l1);
+		printf("l2: \r\n");
+		printlist(l2);
+		List * l=intersect(l1,l2);
+		if(l!=NULL){
+			printf("l1 n l2:\r\n");
+			printlist(l);
+		}		
 	}
 	else {
 		printf("invaild arguments!\r\n");
 	}
 	
+	return 0;
 }
+
+

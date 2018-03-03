@@ -17,4 +17,6 @@ void delect(List *l,ElementType x);
 void delectList(List *l);
 void printlist(List *l);
 void printLots(List *l, List *p);
+List * unionSet(List *l1,List *l2);
+List * intersect(List *l1, List *l2);
 #endif
