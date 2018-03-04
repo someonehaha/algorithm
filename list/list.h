@@ -6,6 +6,7 @@ struct Node;
 typedef struct Node List;
 typedef struct Node Position;
 
+
 List* creatList();
 int isEmpty(List *l);
 int isLast(List *l, Position* p);
@@ -19,4 +20,5 @@ void printlist(List *l);
 void printLots(List *l, List *p);
 List * unionSet(List *l1,List *l2);
 List * intersect(List *l1, List *l2);
+void reverseList(List *l);
 #endif

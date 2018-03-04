@@ -66,6 +66,17 @@ int main(int argc, char * argv[])
 			printlist(l);
 		}		
 	}
+	else if(strcmp(argv[1],"reverselist")==0)
+	{
+		for(i=0;i<10;i++){
+			append(l1,i);
+		}
+		printf("before reverse l1: \r\n");
+		printlist(l1);
+		reverseList(l1);
+		printf("after reverse l1: \r\n");
+		printlist(l1);
+	}
 	else {
 		printf("invaild arguments!\r\n");
 	}

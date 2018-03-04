@@ -213,3 +213,18 @@ List *intersect(List *l1, List *l2)
 	
 }
 
+void reverseList(List *l)
+{
+	Position *prePos, *curPos, *nextPos;
+	prePos = NULL; 
+	curPos = l->next;
+	nextPos = curPos->next;
+	while(nextPos !=NULL){
+		curPos->next = prePos;
+		prePos = curPos;
+		curPos = nextPos;
+		nextPos = nextPos->next;
+	}
+	curPos->next= prePos;
+	l->next =curPos;
+}
